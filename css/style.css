@@ -114,8 +114,8 @@ button::-moz-focus-inner {
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
-  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
+  src: url("fonts/fontawesome-webfont.eot?v=#4.6.3");
+  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.6.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.6.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.6.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.6.3") format("svg");
 }
 html,
 body,
@@ -857,6 +857,10 @@ a.article-title:hover {
   clear: both;
 }
 .article-share-twitter,
+.article-share-sina,
+.article-share-qq,
+.article-share-renren,
+.article-share-wechat,
 .article-share-facebook,
 .article-share-pinterest,
 .article-share-google {
@@ -869,6 +873,10 @@ a.article-title:hover {
   text-shadow: 0 1px #fff;
 }
 .article-share-twitter:before,
+.article-share-sina:before,
+.article-share-qq:before,
+.article-share-renren:before,
+.article-share-wechat:before,
 .article-share-facebook:before,
 .article-share-pinterest:before,
 .article-share-google:before {
@@ -884,6 +892,10 @@ a.article-title:hover {
   text-align: center;
 }
 .article-share-twitter:hover,
+.article-share-sina:hover,
+.article-share-qq:hover,
+.article-share-renren:hover,
+.article-share-wechat:hover,
 .article-share-facebook:hover,
 .article-share-pinterest:hover,
 .article-share-google:hover {
@@ -895,6 +907,34 @@ a.article-title:hover {
 .article-share-twitter:hover {
   background: #00aced;
   text-shadow: 0 1px #008abe;
+}
+.article-share-sina:before {
+  content: "\f18a";
+}
+.article-share-sina:hover {
+  background: #ff8140;
+  text-shadow: 0 1px #ff5700;
+}
+.article-share-qq:before {
+  content: "\f1d6";
+}
+.article-share-qq:hover {
+  background: #fc3;
+  text-shadow: 0 1px #f5b800;
+}
+.article-share-renren:before {
+  content: "\f18b";
+}
+.article-share-renren:hover {
+  background: #227dc5;
+  text-shadow: 0 1px #1b649e;
+}
+.article-share-wechat:before {
+  content: "\f1d7";
+}
+.article-share-wechat:hover {
+  background: #44b549;
+  text-shadow: 0 1px #36913a;
 }
 .article-share-facebook:before {
   content: "\f09a";
