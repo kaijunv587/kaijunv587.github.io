@@ -3,39 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>田凯军</title>
+  <title>java库中的File.listFiles()进行过滤 | 田凯军</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="联系方式
-Email：kaijunv587@163.com
-微信：KK9595995
-QQ: 529895849
-技术博客：https://kaijunv587.github.io
-
-
-技术链接命令行相关命令： https://github.com/Show-Me-the-Code/show-me-the-code练习题： https://github.com/chenwenbo/CommandL">
-<meta property="og:type" content="website">
-<meta property="og:title" content="田凯军">
-<meta property="og:url" content="http://kaijunv587.github.io/关于我/index.html">
+  <meta name="description" content="在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享12345678910111213public class myFileFilter implements FileFilter&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java库中的File.listFiles()进行过滤">
+<meta property="og:url" content="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/index.html">
 <meta property="og:site_name" content="田凯军">
-<meta property="og:description" content="联系方式
-Email：kaijunv587@163.com
-微信：KK9595995
-QQ: 529895849
-技术博客：https://kaijunv587.github.io
-
-
-技术链接命令行相关命令： https://github.com/Show-Me-the-Code/show-me-the-code练习题： https://github.com/chenwenbo/CommandL">
-<meta property="og:updated_time" content="2016-10-18T02:35:50.739Z">
+<meta property="og:description" content="在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享12345678910111213public class myFileFilter implements FileFilter&amp;#123;">
+<meta property="og:updated_time" content="2016-11-16T07:27:40.243Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="田凯军">
-<meta name="twitter:description" content="联系方式
-Email：kaijunv587@163.com
-微信：KK9595995
-QQ: 529895849
-技术博客：https://kaijunv587.github.io
-
-
-技术链接命令行相关命令： https://github.com/Show-Me-the-Code/show-me-the-code练习题： https://github.com/chenwenbo/CommandL">
+<meta name="twitter:title" content="java库中的File.listFiles()进行过滤">
+<meta name="twitter:description" content="在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享12345678910111213public class myFileFilter implements FileFilter&amp;#123;">
   
     <link rel="alternate" href="/www.baidu.com" title="田凯军" type="application/atom+xml">
   
@@ -90,39 +69,57 @@ QQ: 529895849
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-java库中的File.listFiles()进行过滤" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/关于我/index.html" class="article-date">
-  <time datetime="2016-10-14T03:35:34.000Z" itemprop="datePublished">2016-10-14</time>
+    <a href="/2016/11/16/java库中的File.listFiles()进行过滤/" class="article-date">
+  <time datetime="2016-11-16T07:20:34.000Z" itemprop="datePublished">2016-11-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/基础/">基础</a>►<a class="article-category-link" href="/categories/javaweb/后台/基础/File-listFiles-进行过滤/">File.listFiles()进行过滤</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java库中的File.listFiles()进行过滤
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h4><ul>
-<li>Email：kaijunv587@163.com</li>
-<li>微信：KK9595995</li>
-<li>QQ: 529895849</li>
-<li>技术博客：<a href="https://kaijunv587.github.io/">https://kaijunv587.github.io</a></li>
-</ul>
-<hr>
-<h4 id="技术链接"><a href="#技术链接" class="headerlink" title="技术链接"></a>技术链接</h4><p>命令行相关命令： <a href="https://github.com/Show-Me-the-Code/show-me-the-code" target="_blank" rel="external">https://github.com/Show-Me-the-Code/show-me-the-code</a><br>练习题： <a href="https://github.com/chenwenbo/CommandLineGuide" target="_blank" rel="external">https://github.com/chenwenbo/CommandLineGuide</a><br>练习参考： <a href="https://github.com/chenwenbo/interview" target="_blank" rel="external">https://github.com/chenwenbo/interview</a></p>
-<hr>
-<h4 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h4><p>陈文博: <a href="https://chenwenbo.github.io/" target="_blank" rel="external">https://chenwenbo.github.io</a></p>
+        <p>  在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class myFileFilter implements FileFilter&#123;    </div><div class="line">        @Override  </div><div class="line">        public boolean accept(File pathname) &#123;  </div><div class="line">			//拿到文件名</div><div class="line">            String filename = pathname.getName().toLowerCase();</div><div class="line">			//是否包含指定字符  </div><div class="line">            <span class="keyword">if</span>(filename.contains(<span class="string">".txt"</span>))&#123;  </div><div class="line">                <span class="built_in">return</span> <span class="literal">false</span>;  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="built_in">return</span> <span class="literal">true</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>使用方法为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File file = new File(<span class="string">"D:\\"</span>);  //路径</div><div class="line">File[] files = file.listFiles(new myFileFilter());</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/关于我/index.html" data-id="ciuevol7i0001vwj08bubbj1v" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/" data-id="civklwj1q0000ywj0y5377v5g" class="article-share-link">分享到</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/15/关于springMVC的上传下载/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">历史资源</strong>
+      <div class="article-nav-title">关于springMVC的上传下载</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
