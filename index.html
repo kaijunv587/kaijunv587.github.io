@@ -67,6 +67,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jsp省级联动操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/14/jsp省级联动操作/" class="article-date">
+  <time datetime="2017-02-14T01:56:34.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/JSP/">JSP</a>►<a class="article-category-link" href="/categories/javaweb/JSP/省级联动/">省级联动</a>►<a class="article-category-link" href="/categories/javaweb/JSP/省级联动/省级联动的2种方法/">省级联动的2种方法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/jsp省级联动操作/">生成Webservice客户端的4种方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。"><a href="#方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。" class="headerlink" title="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。"></a>方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> getCodeName(rec) &#123;</div><div class="line">	$.ajax(&#123;</div><div class="line">				<span class="built_in">type</span> : <span class="string">'post'</span>,</div><div class="line">				dataType : <span class="string">'json'</span>,</div><div class="line">				url : <span class="string">'$&#123;path&#125;/TDictInfo/getCodeNameLink.do'</span>,</div><div class="line">				data : &#123; --参数</div><div class="line">					dictValue : <span class="string">'city'</span>,</div><div class="line">					infoCode : rec.infoCode</div><div class="line">				&#125;,</div><div class="line">				success : <span class="keyword">function</span>(result) &#123;</div><div class="line">					$(<span class="string">'#city1'</span>).combobox(&#123;</div><div class="line">						data : result,</div><div class="line">						valueField : <span class="string">'infoCode'</span>,</div><div class="line">						textField : <span class="string">'infoName'</span></div><div class="line">					&#125;);</div><div class="line">					$(<span class="string">'#city1'</span>).combobox(&#123;disabled:<span class="literal">false</span>&#125;); </div><div class="line">				&#125;</div><div class="line">			&#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">	&lt;th &gt;所在省:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input</div><div class="line">		class=<span class="string">"easyui-combobox"</span></div><div class="line">		name=<span class="string">"province"</span> id=<span class="string">"province"</span> data-options=<span class="string">"valueField:'infoCode',textField:'infoName',</span></div><div class="line">		required:true,</div><div class="line">		value:'--  请选择省  --',</div><div class="line">		panelHeight:100,</div><div class="line">		url:'<span class="variable">$&#123;path&#125;</span>/TDictInfo/getCodeName.do?dictValue=province',  </div><div class="line"> 		onSelect:getCodeName" &gt;&lt;/input&gt;&lt;/td&gt;</div><div class="line">	&lt;th &gt;所在市:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input class=<span class="string">"easyui-combobox"</span> required=<span class="string">"true"</span> name=<span class="string">"city"</span> id=<span class="string">"city1"</span> disabled=<span class="string">"disabled"</span></div><div class="line">	 data-options=<span class="string">"valueField:'infoCode',panelHeight:100,textField:'infoName',value:'-- 请选择市 --'"</span> &gt;&lt;/input&gt;&lt;/td&gt;</div></pre></td></tr></table></figure>
+<h4 id="方法二使用reload方法"><a href="#方法二使用reload方法" class="headerlink" title="方法二使用reload方法"></a>方法二使用reload方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;th &gt;所在省:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input</div><div class="line">		class=<span class="string">"easyui-combobox"</span> <span class="built_in">type</span>=<span class="string">"text"</span> required=<span class="string">"true"</span></div><div class="line">		name=<span class="string">"province"</span> id=<span class="string">"province"</span> data-options=<span class="string">"valueField:'infoCode',textField:'infoName',</span></div><div class="line">		required:true,value:'--  请选择省  --',</div><div class="line">		url:'<span class="variable">$&#123;path&#125;</span>/TDictInfo/getCodeName.do?dictValue=province',  </div><div class="line"> 		onSelect: function(rec) &#123;</div><div class="line">			var infoCode=rec.infoCode;</div><div class="line">			var url = '<span class="variable">$&#123;path&#125;</span>/TDictInfo/getCodeNameLink.do?dictValue=city&amp;infoCode='+infoCode;</div><div class="line">			<span class="variable">$('#city1')</span>.combobox('reload',url);</div><div class="line">			&#125;" &gt;&lt;/input&gt;&lt;/td&gt;</div><div class="line">	&lt;th &gt;所在市:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input class=<span class="string">"easyui-combobox"</span> required=<span class="string">"true"</span>  <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"city"</span> id=<span class="string">"city1"</span></div><div class="line">	 data-options=<span class="string">"valueField:'infoCode',textField:'infoName'"</span> &gt;&lt;/input&gt;&lt;/td&gt;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kaijunv587.github.io/2017/02/14/jsp省级联动操作/" data-id="ciz4vzp8y0000ogj0y99tf1n2" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/省级联动/">省级联动</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-DB2之SQL" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/24/DB2之SQL/" class="article-date">
@@ -99,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/24/DB2之SQL/" data-id="ciz4vocdu0000tgj0jmu3ky6a" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/24/DB2之SQL/" data-id="ciz4vvshq0000a4j0gm8tn8tl" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li></ul>
@@ -150,7 +193,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/24/生成Webservice客户端的4种方法/" data-id="ciz4vocec0002tgj0fhal763o" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/24/生成Webservice客户端的4种方法/" data-id="ciz4vvsim000ba4j0sefr3tzu" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webservice/">Webservice</a></li></ul>
@@ -193,7 +236,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/22/System.getProperty获得系统属性 /" data-id="ciz4vocem0005tgj0shau3gjl" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/22/System.getProperty获得系统属性 /" data-id="ciz4vvsi90005a4j0ymuk9c57" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-getProperty-String/">System.getProperty(String)</a></li></ul>
@@ -236,7 +279,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/16/Excel的读取与创建/" data-id="ciz4vocf0000btgj0p87e6t0y" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/16/Excel的读取与创建/" data-id="ciz4vvsi00002a4j0olnzglym" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Excel/">Excel</a></li></ul>
@@ -280,7 +323,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/" data-id="ciz4vocep0006tgj0mfaft6bk" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/" data-id="ciz4vvsif0006a4j0oowzj84z" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li></ul>
@@ -326,7 +369,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/10/15/关于springMVC的上传下载/" data-id="ciz4voceu0007tgj04p8tnydg" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/10/15/关于springMVC的上传下载/" data-id="ciz4vvsii0007a4j08wsw2taf" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springMVC/">springMVC</a></li></ul>
@@ -347,7 +390,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/">DB2</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/字符分切统计分组实例/">字符分切统计分组实例</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/">javaweb</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/">后台</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/">Webservice</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/生成Webservice客户端的4种方法/">生成Webservice客户端的4种方法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/">springMVC</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/上传下载/">上传下载</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/">基础</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/Excel的读取与创建/">Excel的读取与创建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/File-listFiles-进行过滤/">File.listFiles()进行过滤</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/System-getProperty-String/">System.getProperty(String)</a></li></ul></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/">DB2</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/字符分切统计分组实例/">字符分切统计分组实例</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/">javaweb</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/">JSP</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/省级联动/">省级联动</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/省级联动/省级联动的2种方法/">省级联动的2种方法</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/">后台</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/">Webservice</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/生成Webservice客户端的4种方法/">生成Webservice客户端的4种方法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/">springMVC</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/上传下载/">上传下载</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/">基础</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/Excel的读取与创建/">Excel的读取与创建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/File-listFiles-进行过滤/">File.listFiles()进行过滤</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/System-getProperty-String/">System.getProperty(String)</a></li></ul></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -357,7 +400,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Excel/">Excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-getProperty-String/">System.getProperty(String)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webservice/">Webservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springMVC/">springMVC</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Excel/">Excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-getProperty-String/">System.getProperty(String)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webservice/">Webservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springMVC/">springMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省级联动/">省级联动</a></li></ul>
     </div>
   </div>
 
@@ -367,7 +410,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Excel/" style="font-size: 10px;">Excel</a> <a href="/tags/File-listFiles/" style="font-size: 10px;">File.listFiles()</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/System-getProperty-String/" style="font-size: 10px;">System.getProperty(String)</a> <a href="/tags/Webservice/" style="font-size: 10px;">Webservice</a> <a href="/tags/springMVC/" style="font-size: 10px;">springMVC</a>
+      <a href="/tags/Excel/" style="font-size: 10px;">Excel</a> <a href="/tags/File-listFiles/" style="font-size: 10px;">File.listFiles()</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/System-getProperty-String/" style="font-size: 10px;">System.getProperty(String)</a> <a href="/tags/Webservice/" style="font-size: 10px;">Webservice</a> <a href="/tags/springMVC/" style="font-size: 10px;">springMVC</a> <a href="/tags/省级联动/" style="font-size: 10px;">省级联动</a>
     </div>
   </div>
 
@@ -376,7 +419,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年 11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年 10月</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年 11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年 10月</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -387,6 +430,10 @@ finnish就可以生成客户端代码了。
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/02/14/jsp省级联动操作/">生成Webservice客户端的4种方法</a>
+          </li>
         
           <li>
             <a href="/2016/11/24/DB2之SQL/">DB2之SQL</a>
@@ -402,10 +449,6 @@ finnish就可以生成客户端代码了。
         
           <li>
             <a href="/2016/11/16/Excel的读取与创建/">Excel的读取与创建</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/16/java库中的File.listFiles()进行过滤/">java库中的File.listFiles()进行过滤</a>
           </li>
         
       </ul>

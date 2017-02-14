@@ -5,19 +5,16 @@
   
   <title>生成Webservice客户端的4种方法 | 田凯军</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.使用Axis生产客户端代码（另存为bat文件）之前很多次不行都是目录包含空格比如Axis_Lib，Output_Path
-1234567[java]view plaincopyprint?			set Axis_Lib=F:\axis1.4\axis\WEB-INF\lib  	        set Java_Cmd=java -Djava.ext.dirs=%Axis_Lib%">
+  <meta name="description" content="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。1234567891011121314151617181920212223242526272829303132function getCodeName(rec) &amp;#123;	$.ajax(&amp;#123;				type : &apos;post&apos;,				dataType : &apos;json&apos;,				url : &apos;$&amp;#123;path&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生成Webservice客户端的4种方法">
-<meta property="og:url" content="http://kaijunv587.github.io/2016/11/24/生成Webservice客户端的4种方法/index.html">
+<meta property="og:url" content="http://kaijunv587.github.io/2017/02/14/jsp省级联动操作/index.html">
 <meta property="og:site_name" content="田凯军">
-<meta property="og:description" content="1.使用Axis生产客户端代码（另存为bat文件）之前很多次不行都是目录包含空格比如Axis_Lib，Output_Path
-1234567[java]view plaincopyprint?			set Axis_Lib=F:\axis1.4\axis\WEB-INF\lib  	        set Java_Cmd=java -Djava.ext.dirs=%Axis_Lib%">
-<meta property="og:updated_time" content="2016-11-24T08:00:05.935Z">
+<meta property="og:description" content="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。1234567891011121314151617181920212223242526272829303132function getCodeName(rec) &amp;#123;	$.ajax(&amp;#123;				type : &apos;post&apos;,				dataType : &apos;json&apos;,				url : &apos;$&amp;#123;path&amp;">
+<meta property="og:updated_time" content="2017-02-14T02:05:26.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成Webservice客户端的4种方法">
-<meta name="twitter:description" content="1.使用Axis生产客户端代码（另存为bat文件）之前很多次不行都是目录包含空格比如Axis_Lib，Output_Path
-1234567[java]view plaincopyprint?			set Axis_Lib=F:\axis1.4\axis\WEB-INF\lib  	        set Java_Cmd=java -Djava.ext.dirs=%Axis_Lib%">
+<meta name="twitter:description" content="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。1234567891011121314151617181920212223242526272829303132function getCodeName(rec) &amp;#123;	$.ajax(&amp;#123;				type : &apos;post&apos;,				dataType : &apos;json&apos;,				url : &apos;$&amp;#123;path&amp;">
   
     <link rel="alternate" href="/www.baidu.com" title="田凯军" type="application/atom+xml">
   
@@ -72,14 +69,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-生成Webservice客户端的4种方法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-jsp省级联动操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/24/生成Webservice客户端的4种方法/" class="article-date">
-  <time datetime="2016-11-24T07:20:34.000Z" itemprop="datePublished">2016-11-24</time>
+    <a href="/2017/02/14/jsp省级联动操作/" class="article-date">
+  <time datetime="2017-02-14T01:56:34.000Z" itemprop="datePublished">2017-02-14</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/Webservice/">Webservice</a>►<a class="article-category-link" href="/categories/javaweb/后台/Webservice/生成Webservice客户端的4种方法/">生成Webservice客户端的4种方法</a>
+    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/JSP/">JSP</a>►<a class="article-category-link" href="/categories/javaweb/JSP/省级联动/">省级联动</a>►<a class="article-category-link" href="/categories/javaweb/JSP/省级联动/省级联动的2种方法/">省级联动的2种方法</a>
   </div>
 
   </div>
@@ -98,23 +95,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-使用Axis生产客户端代码（另存为bat文件）"><a href="#1-使用Axis生产客户端代码（另存为bat文件）" class="headerlink" title="1.使用Axis生产客户端代码（另存为bat文件）"></a>1.使用Axis生产客户端代码（另存为bat文件）</h4><p>之前很多次不行都是目录包含空格比如Axis_Lib，Output_Path</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[java]view plaincopyprint?</div><div class="line">			<span class="built_in">set</span> Axis_Lib=F:\axis1.4\axis\WEB-INF\lib  </div><div class="line">	        <span class="built_in">set</span> Java_Cmd=java -Djava.ext.dirs=%Axis_Lib%      </div><div class="line">	        <span class="built_in">set</span> Output_Path=D:\Workspaces  </div><div class="line">	        <span class="built_in">set</span> Package=com.axis.sub  </div><div class="line">	        %Java_Cmd% org.apache.axis.wsdl.WSDL2Java -o%Output_Path% -p%Package% http://192.168.11.62:8090/rainLogin?wsdl   </div><div class="line">	        pause</div></pre></td></tr></table></figure>
-<h4 id="2使用JDK1-6的wsimport-exe产生客户端代码-之前要将JDK的bin添加到环境变量Path中"><a href="#2使用JDK1-6的wsimport-exe产生客户端代码-之前要将JDK的bin添加到环境变量Path中" class="headerlink" title="2使用JDK1.6的wsimport.exe产生客户端代码(之前要将JDK的bin添加到环境变量Path中)"></a>2使用JDK1.6的wsimport.exe产生客户端代码(之前要将JDK的bin添加到环境变量Path中)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[html]view plaincopyprint?</div><div class="line">	wsimport  -keep -p com.jdk6.sub <span class="_">-s</span> JavaSrc http://192.168.11.62:8090/rainLogin?wsdl  </div><div class="line">[html]view plaincopyprint?</div><div class="line">	<span class="_">-s</span>(src):在当前路径下的JavaSrc(要手动创建)文件夹中生成客户端代码  </div><div class="line">	-p(package):定义客户端代码的包名  </div><div class="line">	-keep 保留.class文件</div></pre></td></tr></table></figure>
-<h4 id="3使用CXF-wsdl2java-bat-要先将CXF的bin目录添加到环境变量Path下"><a href="#3使用CXF-wsdl2java-bat-要先将CXF的bin目录添加到环境变量Path下" class="headerlink" title="3使用CXF wsdl2java.bat (要先将CXF的bin目录添加到环境变量Path下)"></a>3使用CXF wsdl2java.bat (要先将CXF的bin目录添加到环境变量Path下)</h4><pre><code>在cmd本项目SCR目录下运行下面代码，就会在src下生成客户端代码
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[html]view plaincopyprint?</div><div class="line">	wsdl2java http://192.168.11.62:8080/FFWebservice/services/PortalServices?wsdl</div></pre></td></tr></table></figure>
-<h4 id="4-使用Myeclipse自带工具生成客户端代码"><a href="#4-使用Myeclipse自带工具生成客户端代码" class="headerlink" title="4 使用Myeclipse自带工具生成客户端代码"></a>4 使用Myeclipse自带工具生成客户端代码</h4><pre><code>新建一个Java工程，右键项目新建other，选择web services 的Web Service Client 在Service definition中填入wsdl地址如：http://192.168.11.62:8080/FFWebservice/services/PortalServices?wsdl 
-finnish就可以生成客户端代码了。
-</code></pre><hr>
-<p>参考: <a href="http://blog.csdn.net/lovingshu/article/details/8004840" target="_blank" rel="external">WebService 超简单入门教程</a><br>参考: <a href="http://blog.csdn.net/kardelpeng/article/details/6321019" target="_blank" rel="external">Java中WebService实例</a></p>
-
+        <h4 id="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。"><a href="#方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。" class="headerlink" title="方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。"></a>方法一使用ajax的方法实现，但是在修改界面会出现无法赋值，显示默认值。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> getCodeName(rec) &#123;</div><div class="line">	$.ajax(&#123;</div><div class="line">				<span class="built_in">type</span> : <span class="string">'post'</span>,</div><div class="line">				dataType : <span class="string">'json'</span>,</div><div class="line">				url : <span class="string">'$&#123;path&#125;/TDictInfo/getCodeNameLink.do'</span>,</div><div class="line">				data : &#123; --参数</div><div class="line">					dictValue : <span class="string">'city'</span>,</div><div class="line">					infoCode : rec.infoCode</div><div class="line">				&#125;,</div><div class="line">				success : <span class="keyword">function</span>(result) &#123;</div><div class="line">					$(<span class="string">'#city1'</span>).combobox(&#123;</div><div class="line">						data : result,</div><div class="line">						valueField : <span class="string">'infoCode'</span>,</div><div class="line">						textField : <span class="string">'infoName'</span></div><div class="line">					&#125;);</div><div class="line">					$(<span class="string">'#city1'</span>).combobox(&#123;disabled:<span class="literal">false</span>&#125;); </div><div class="line">				&#125;</div><div class="line">			&#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">	&lt;th &gt;所在省:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input</div><div class="line">		class=<span class="string">"easyui-combobox"</span></div><div class="line">		name=<span class="string">"province"</span> id=<span class="string">"province"</span> data-options=<span class="string">"valueField:'infoCode',textField:'infoName',</span></div><div class="line">		required:true,</div><div class="line">		value:'--  请选择省  --',</div><div class="line">		panelHeight:100,</div><div class="line">		url:'<span class="variable">$&#123;path&#125;</span>/TDictInfo/getCodeName.do?dictValue=province',  </div><div class="line"> 		onSelect:getCodeName" &gt;&lt;/input&gt;&lt;/td&gt;</div><div class="line">	&lt;th &gt;所在市:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input class=<span class="string">"easyui-combobox"</span> required=<span class="string">"true"</span> name=<span class="string">"city"</span> id=<span class="string">"city1"</span> disabled=<span class="string">"disabled"</span></div><div class="line">	 data-options=<span class="string">"valueField:'infoCode',panelHeight:100,textField:'infoName',value:'-- 请选择市 --'"</span> &gt;&lt;/input&gt;&lt;/td&gt;</div></pre></td></tr></table></figure>
+<h4 id="方法二使用reload方法"><a href="#方法二使用reload方法" class="headerlink" title="方法二使用reload方法"></a>方法二使用reload方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;th &gt;所在省:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input</div><div class="line">		class=<span class="string">"easyui-combobox"</span> <span class="built_in">type</span>=<span class="string">"text"</span> required=<span class="string">"true"</span></div><div class="line">		name=<span class="string">"province"</span> id=<span class="string">"province"</span> data-options=<span class="string">"valueField:'infoCode',textField:'infoName',</span></div><div class="line">		required:true,value:'--  请选择省  --',</div><div class="line">		url:'<span class="variable">$&#123;path&#125;</span>/TDictInfo/getCodeName.do?dictValue=province',  </div><div class="line"> 		onSelect: function(rec) &#123;</div><div class="line">			var infoCode=rec.infoCode;</div><div class="line">			var url = '<span class="variable">$&#123;path&#125;</span>/TDictInfo/getCodeNameLink.do?dictValue=city&amp;infoCode='+infoCode;</div><div class="line">			<span class="variable">$('#city1')</span>.combobox('reload',url);</div><div class="line">			&#125;" &gt;&lt;/input&gt;&lt;/td&gt;</div><div class="line">	&lt;th &gt;所在市:&lt;/th&gt;</div><div class="line">	&lt;td &gt;&lt;input class=<span class="string">"easyui-combobox"</span> required=<span class="string">"true"</span>  <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"city"</span> id=<span class="string">"city1"</span></div><div class="line">	 data-options=<span class="string">"valueField:'infoCode',textField:'infoName'"</span> &gt;&lt;/input&gt;&lt;/td&gt;</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/24/生成Webservice客户端的4种方法/" data-id="ciz4vvsim000ba4j0sefr3tzu" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/02/14/jsp省级联动操作/" data-id="ciz4vzp8y0000ogj0y99tf1n2" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webservice/">Webservice</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/省级联动/">省级联动</a></li></ul>
 
     </footer>
   </div>
@@ -122,19 +111,10 @@ finnish就可以生成客户端代码了。
     
 <nav id="article-nav">
   
-    <a href="/2016/11/24/DB2之SQL/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新资源</strong>
-      <div class="article-nav-title">
-        
-          DB2之SQL
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/22/System.getProperty获得系统属性 /" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/24/DB2之SQL/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">历史资源</strong>
-      <div class="article-nav-title">System.getProperty(String)获得系统属性</div>
+      <div class="article-nav-title">DB2之SQL</div>
     </a>
   
 </nav>
