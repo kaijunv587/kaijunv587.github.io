@@ -67,6 +67,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-关于JS运算精度损失的说明及处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/02/关于JS运算精度损失的说明及处理/" class="article-date">
+  <time datetime="2017-03-02T09:40:00.000Z" itemprop="datePublished">2017-03-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JSP/">JSP</a>►<a class="article-category-link" href="/categories/JSP/JavaScript/">JavaScript</a>►<a class="article-category-link" href="/categories/JSP/JavaScript/自定义加减乘除/">自定义加减乘除</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/关于JS运算精度损失的说明及处理/">关于JS运算精度损失的说明及处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="自定义加减乘除"><a href="#自定义加减乘除" class="headerlink" title="自定义加减乘除"></a>自定义加减乘除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="built_in">float</span>Count(operators, arg1, arg2) &#123;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'*'</span>) &#123;</div><div class="line">		var m = 0, s1 = arg1.toString(), s2 = arg2.toString();</div><div class="line">		try &#123;</div><div class="line">			m += s1.split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			m += s2.split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> Number(s1.replace(<span class="string">"."</span>, <span class="string">""</span>)) * Number(s2.replace(<span class="string">"."</span>, <span class="string">""</span>))</div><div class="line">				/ Math.pow(10, m)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'/'</span>) &#123;</div><div class="line">		var t1 = 0, t2 = 0, r1, r2;</div><div class="line">		try &#123;</div><div class="line">			t1 = arg1.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			t2 = arg2.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		with (Math) &#123;</div><div class="line">			r1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>))</div><div class="line">			r2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>))</div><div class="line">			<span class="built_in">return</span> (r1 / r2) * pow(10, t2 - t1);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'+'</span>) &#123;</div><div class="line">		var r1, r2, m, c;</div><div class="line">		try &#123;</div><div class="line">			r1 = arg1.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r1 = 0</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			r2 = arg2.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r2 = 0</div><div class="line">		&#125;</div><div class="line">		c = Math.abs(r1 - r2);</div><div class="line">		m = Math.pow(10, Math.max(r1, r2))</div><div class="line">		<span class="keyword">if</span> (c &gt; 0) &#123;</div><div class="line">			var cm = Math.pow(10, c);</div><div class="line">			<span class="keyword">if</span> (r1 &gt; r2) &#123;</div><div class="line">				arg1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">				arg2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>)) * cm;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				arg1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>)) * cm;</div><div class="line">				arg2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			arg1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">			arg2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> (arg1 + arg2) / m;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'-'</span>) &#123;</div><div class="line">		var r1, r2, m, n;</div><div class="line">		try &#123;</div><div class="line">			r1 = arg1.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r1 = 0</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			r2 = arg2.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r2 = 0</div><div class="line">		&#125;</div><div class="line">		m = Math.pow(10, Math.max(r1, r2))</div><div class="line">		n = (r1 &gt;= r2) ? r1 : r2;</div><div class="line">		<span class="built_in">return</span> ((arg1 * m - arg2 * m) / m).toFixed(n);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kaijunv587.github.io/2017/03/02/关于JS运算精度损失的说明及处理/" data-id="cizs77j850002l4j0yuu9ejd0" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript自定义加减乘除/">JavaScript自定义加减乘除</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-jsp省级联动操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/14/jsp省级联动操作/" class="article-date">
@@ -98,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/02/14/jsp省级联动操作/" data-id="ciz4vzp8y0000ogj0y99tf1n2" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/02/14/jsp省级联动操作/" data-id="cizs77jab001sl4j07wkbncx0" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/省级联动/">省级联动</a></li></ul>
@@ -142,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/24/DB2之SQL/" data-id="ciz4vvshq0000a4j0gm8tn8tl" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/24/DB2之SQL/" data-id="cizs77j850000l4j0ub6oiodt" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li></ul>
@@ -193,7 +236,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/24/生成Webservice客户端的4种方法/" data-id="ciz4vvsim000ba4j0sefr3tzu" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/24/生成Webservice客户端的4种方法/" data-id="cizs77j900007l4j00quajusx" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webservice/">Webservice</a></li></ul>
@@ -236,7 +279,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/22/System.getProperty获得系统属性 /" data-id="ciz4vvsi90005a4j0ymuk9c57" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/22/System.getProperty获得系统属性 /" data-id="cizs77j8l0005l4j067o5qgwa" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-getProperty-String/">System.getProperty(String)</a></li></ul>
@@ -279,7 +322,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/16/Excel的读取与创建/" data-id="ciz4vvsi00002a4j0olnzglym" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/16/Excel的读取与创建/" data-id="cizs77j8l0006l4j0s9xxsoh3" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Excel/">Excel</a></li></ul>
@@ -323,7 +366,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/" data-id="ciz4vvsif0006a4j0oowzj84z" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/" data-id="cizs77jab001rl4j09wvx0oit" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li></ul>
@@ -369,7 +412,7 @@ finnish就可以生成客户端代码了。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/10/15/关于springMVC的上传下载/" data-id="ciz4vvsii0007a4j08wsw2taf" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2016/10/15/关于springMVC的上传下载/" data-id="cizs77j90000bl4j04mf4bqpr" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springMVC/">springMVC</a></li></ul>
@@ -390,7 +433,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/">DB2</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/字符分切统计分组实例/">字符分切统计分组实例</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/">javaweb</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/">JSP</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/省级联动/">省级联动</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/省级联动/省级联动的2种方法/">省级联动的2种方法</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/">后台</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/">Webservice</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/生成Webservice客户端的4种方法/">生成Webservice客户端的4种方法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/">springMVC</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/上传下载/">上传下载</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/">基础</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/Excel的读取与创建/">Excel的读取与创建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/File-listFiles-进行过滤/">File.listFiles()进行过滤</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/System-getProperty-String/">System.getProperty(String)</a></li></ul></li></ul></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JSP/">JSP</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JSP/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JSP/JavaScript/自定义加减乘除/">自定义加减乘除</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/">DB2</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/DB2/字符分切统计分组实例/">字符分切统计分组实例</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/">javaweb</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/">JSP</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/省级联动/">省级联动</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/JSP/省级联动/省级联动的2种方法/">省级联动的2种方法</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/">后台</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/">Webservice</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/Webservice/生成Webservice客户端的4种方法/">生成Webservice客户端的4种方法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/">springMVC</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/springMVC/上传下载/">上传下载</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/">基础</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/Excel的读取与创建/">Excel的读取与创建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/File-listFiles-进行过滤/">File.listFiles()进行过滤</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaweb/后台/基础/System-getProperty-String/">System.getProperty(String)</a></li></ul></li></ul></li></ul></li></ul>
     </div>
   </div>
 
@@ -400,7 +443,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Excel/">Excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-getProperty-String/">System.getProperty(String)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webservice/">Webservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springMVC/">springMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省级联动/">省级联动</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Excel/">Excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript自定义加减乘除/">JavaScript自定义加减乘除</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-getProperty-String/">System.getProperty(String)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webservice/">Webservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springMVC/">springMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/省级联动/">省级联动</a></li></ul>
     </div>
   </div>
 
@@ -410,7 +453,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Excel/" style="font-size: 10px;">Excel</a> <a href="/tags/File-listFiles/" style="font-size: 10px;">File.listFiles()</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/System-getProperty-String/" style="font-size: 10px;">System.getProperty(String)</a> <a href="/tags/Webservice/" style="font-size: 10px;">Webservice</a> <a href="/tags/springMVC/" style="font-size: 10px;">springMVC</a> <a href="/tags/省级联动/" style="font-size: 10px;">省级联动</a>
+      <a href="/tags/Excel/" style="font-size: 10px;">Excel</a> <a href="/tags/File-listFiles/" style="font-size: 10px;">File.listFiles()</a> <a href="/tags/JavaScript自定义加减乘除/" style="font-size: 10px;">JavaScript自定义加减乘除</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/System-getProperty-String/" style="font-size: 10px;">System.getProperty(String)</a> <a href="/tags/Webservice/" style="font-size: 10px;">Webservice</a> <a href="/tags/springMVC/" style="font-size: 10px;">springMVC</a> <a href="/tags/省级联动/" style="font-size: 10px;">省级联动</a>
     </div>
   </div>
 
@@ -419,7 +462,7 @@ finnish就可以生成客户端代码了。
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年 11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年 10月</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年 03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年 02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年 11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年 10月</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -430,6 +473,10 @@ finnish就可以生成客户端代码了。
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/02/关于JS运算精度损失的说明及处理/">关于JS运算精度损失的说明及处理</a>
+          </li>
         
           <li>
             <a href="/2017/02/14/jsp省级联动操作/">生成Webservice客户端的4种方法</a>
@@ -445,10 +492,6 @@ finnish就可以生成客户端代码了。
         
           <li>
             <a href="/2016/11/22/System.getProperty获得系统属性 /">System.getProperty(String)获得系统属性</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/16/Excel的读取与创建/">Excel的读取与创建</a>
           </li>
         
       </ul>

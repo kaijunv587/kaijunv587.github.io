@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>java库中的File.listFiles()进行过滤 | 田凯军</title>
+  <title>关于JS运算精度损失的说明及处理 | 田凯军</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享12345678910111213public class myFileFilter implements FileFilter&amp;#123;">
+  <meta name="description" content="自定义加减乘除12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576function floatCount(operators, arg1, arg2) &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java库中的File.listFiles()进行过滤">
-<meta property="og:url" content="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/index.html">
+<meta property="og:title" content="关于JS运算精度损失的说明及处理">
+<meta property="og:url" content="http://kaijunv587.github.io/2017/03/02/关于JS运算精度损失的说明及处理/index.html">
 <meta property="og:site_name" content="田凯军">
-<meta property="og:description" content="在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享12345678910111213public class myFileFilter implements FileFilter&amp;#123;">
-<meta property="og:updated_time" content="2016-11-16T07:27:40.243Z">
+<meta property="og:description" content="自定义加减乘除12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576function floatCount(operators, arg1, arg2) &amp;#123;">
+<meta property="og:updated_time" content="2017-03-02T09:37:03.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java库中的File.listFiles()进行过滤">
-<meta name="twitter:description" content="在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享12345678910111213public class myFileFilter implements FileFilter&amp;#123;">
+<meta name="twitter:title" content="关于JS运算精度损失的说明及处理">
+<meta name="twitter:description" content="自定义加减乘除12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576function floatCount(operators, arg1, arg2) &amp;#123;">
   
     <link rel="alternate" href="/www.baidu.com" title="田凯军" type="application/atom+xml">
   
@@ -69,14 +69,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-java库中的File.listFiles()进行过滤" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-关于JS运算精度损失的说明及处理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/16/java库中的File.listFiles()进行过滤/" class="article-date">
-  <time datetime="2016-11-16T07:20:34.000Z" itemprop="datePublished">2016-11-16</time>
+    <a href="/2017/03/02/关于JS运算精度损失的说明及处理/" class="article-date">
+  <time datetime="2017-03-02T09:40:00.000Z" itemprop="datePublished">2017-03-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/基础/">基础</a>►<a class="article-category-link" href="/categories/javaweb/后台/基础/File-listFiles-进行过滤/">File.listFiles()进行过滤</a>
+    <a class="article-category-link" href="/categories/JSP/">JSP</a>►<a class="article-category-link" href="/categories/JSP/JavaScript/">JavaScript</a>►<a class="article-category-link" href="/categories/JSP/JavaScript/自定义加减乘除/">自定义加减乘除</a>
   </div>
 
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java库中的File.listFiles()进行过滤
+      关于JS运算精度损失的说明及处理
     </h1>
   
 
@@ -95,16 +95,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  在我们调用java库中的File.listFiles()可以列出所有所有文件。其实还有一个方法可以对文件进行过滤，而其中需要实现接口FileFilter。jdk的文档中的说明看的不是很懂。在网上搜索了一下，把具体的使用方法和大家共享<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class myFileFilter implements FileFilter&#123;    </div><div class="line">        @Override  </div><div class="line">        public boolean accept(File pathname) &#123;  </div><div class="line">			//拿到文件名</div><div class="line">            String filename = pathname.getName().toLowerCase();</div><div class="line">			//是否包含指定字符  </div><div class="line">            <span class="keyword">if</span>(filename.contains(<span class="string">".txt"</span>))&#123;  </div><div class="line">                <span class="built_in">return</span> <span class="literal">false</span>;  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="built_in">return</span> <span class="literal">true</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>使用方法为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File file = new File(<span class="string">"D:\\"</span>);  //路径</div><div class="line">File[] files = file.listFiles(new myFileFilter());</div></pre></td></tr></table></figure></p>
+        <h4 id="自定义加减乘除"><a href="#自定义加减乘除" class="headerlink" title="自定义加减乘除"></a>自定义加减乘除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="built_in">float</span>Count(operators, arg1, arg2) &#123;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'*'</span>) &#123;</div><div class="line">		var m = 0, s1 = arg1.toString(), s2 = arg2.toString();</div><div class="line">		try &#123;</div><div class="line">			m += s1.split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			m += s2.split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> Number(s1.replace(<span class="string">"."</span>, <span class="string">""</span>)) * Number(s2.replace(<span class="string">"."</span>, <span class="string">""</span>))</div><div class="line">				/ Math.pow(10, m)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'/'</span>) &#123;</div><div class="line">		var t1 = 0, t2 = 0, r1, r2;</div><div class="line">		try &#123;</div><div class="line">			t1 = arg1.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			t2 = arg2.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">		&#125;</div><div class="line">		with (Math) &#123;</div><div class="line">			r1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>))</div><div class="line">			r2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>))</div><div class="line">			<span class="built_in">return</span> (r1 / r2) * pow(10, t2 - t1);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'+'</span>) &#123;</div><div class="line">		var r1, r2, m, c;</div><div class="line">		try &#123;</div><div class="line">			r1 = arg1.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r1 = 0</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			r2 = arg2.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r2 = 0</div><div class="line">		&#125;</div><div class="line">		c = Math.abs(r1 - r2);</div><div class="line">		m = Math.pow(10, Math.max(r1, r2))</div><div class="line">		<span class="keyword">if</span> (c &gt; 0) &#123;</div><div class="line">			var cm = Math.pow(10, c);</div><div class="line">			<span class="keyword">if</span> (r1 &gt; r2) &#123;</div><div class="line">				arg1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">				arg2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>)) * cm;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				arg1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>)) * cm;</div><div class="line">				arg2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			arg1 = Number(arg1.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">			arg2 = Number(arg2.toString().replace(<span class="string">"."</span>, <span class="string">""</span>));</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> (arg1 + arg2) / m;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (operators == <span class="string">'-'</span>) &#123;</div><div class="line">		var r1, r2, m, n;</div><div class="line">		try &#123;</div><div class="line">			r1 = arg1.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r1 = 0</div><div class="line">		&#125;</div><div class="line">		try &#123;</div><div class="line">			r2 = arg2.toString().split(<span class="string">"."</span>)[1].length</div><div class="line">		&#125; catch (e) &#123;</div><div class="line">			r2 = 0</div><div class="line">		&#125;</div><div class="line">		m = Math.pow(10, Math.max(r1, r2))</div><div class="line">		n = (r1 &gt;= r2) ? r1 : r2;</div><div class="line">		<span class="built_in">return</span> ((arg1 * m - arg2 * m) / m).toFixed(n);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2016/11/16/java库中的File.listFiles()进行过滤/" data-id="cizs77jab001rl4j09wvx0oit" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/03/02/关于JS运算精度损失的说明及处理/" data-id="cizs77j850002l4j0yuu9ejd0" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/File-listFiles/">File.listFiles()</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript自定义加减乘除/">JavaScript自定义加减乘除</a></li></ul>
 
     </footer>
   </div>
@@ -112,19 +111,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/11/16/Excel的读取与创建/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">新资源</strong>
-      <div class="article-nav-title">
-        
-          Excel的读取与创建
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/10/15/关于springMVC的上传下载/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/02/14/jsp省级联动操作/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">历史资源</strong>
-      <div class="article-nav-title">关于springMVC的上传下载</div>
+      <div class="article-nav-title">生成Webservice客户端的4种方法</div>
     </a>
   
 </nav>
