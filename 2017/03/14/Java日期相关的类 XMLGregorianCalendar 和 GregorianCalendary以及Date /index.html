@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: JSP | 田凯军</title>
+  <title>Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date | 田凯军</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="田凯军">
-<meta property="og:url" content="http://kaijunv587.github.io/categories/javaweb/JSP/index.html">
+  <meta name="description" content="Java日期类XMLGregorianCalendar获取系统时间123456//使用GregorianCalendar生成系统时间GregorianCalendar g=new GregorianCalendar();//GregorianCalendar日期类型转换成XMLGregorianCalendarXMLGregorianCalendar xgcal=xgcal=DatatypeFac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date">
+<meta property="og:url" content="http://kaijunv587.github.io/2017/03/14/Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date /index.html">
 <meta property="og:site_name" content="田凯军">
+<meta property="og:description" content="Java日期类XMLGregorianCalendar获取系统时间123456//使用GregorianCalendar生成系统时间GregorianCalendar g=new GregorianCalendar();//GregorianCalendar日期类型转换成XMLGregorianCalendarXMLGregorianCalendar xgcal=xgcal=DatatypeFac">
+<meta property="og:updated_time" content="2017-03-14T06:56:43.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="田凯军">
+<meta name="twitter:title" content="Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date">
+<meta name="twitter:description" content="Java日期类XMLGregorianCalendar获取系统时间123456//使用GregorianCalendar生成系统时间GregorianCalendar g=new GregorianCalendar();//GregorianCalendar日期类型转换成XMLGregorianCalendarXMLGregorianCalendar xgcal=xgcal=DatatypeFac">
   
     <link rel="alternate" href="/www.baidu.com" title="田凯军" type="application/atom+xml">
   
@@ -65,58 +69,59 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/03/02/关于JS运算精度损失的说明及处理/" class="archive-article-date">
-  <time datetime="2017-03-02T09:40:00.000Z" itemprop="datePublished">03-02</time>
+        <section id="main"><article id="post-Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/14/Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date /" class="article-date">
+  <time datetime="2017-03-14T06:09:34.000Z" itemprop="datePublished">2017-03-14</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/基础/">基础</a>►<a class="article-category-link" href="/categories/javaweb/后台/基础/日期相关的类/">日期相关的类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/关于JS运算精度损失的说明及处理/">关于JS运算精度损失的说明及处理</a>
+    <h1 class="article-title" itemprop="name">
+      Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/02/14/jsp省级联动操作/" class="archive-article-date">
-  <time datetime="2017-02-14T01:56:34.000Z" itemprop="datePublished">02-14</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/14/jsp省级联动操作/">生成Webservice客户端的4种方法</a>
-    </h1>
-  
+        <h4 id="Java日期类XMLGregorianCalendar获取系统时间"><a href="#Java日期类XMLGregorianCalendar获取系统时间" class="headerlink" title="Java日期类XMLGregorianCalendar获取系统时间"></a>Java日期类XMLGregorianCalendar获取系统时间</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//使用GregorianCalendar生成系统时间</div><div class="line">GregorianCalendar g=new GregorianCalendar();</div><div class="line">//GregorianCalendar日期类型转换成XMLGregorianCalendar</div><div class="line">XMLGregorianCalendar xgcal=xgcal=DatatypeFactory.newInstance().newXMLGregorianCalendar(g);</div><div class="line">//生成XMLGregorianCalendar类型的日期（年，月，日，时，分，秒，毫秒，时区）</div><div class="line">XMLGregorianCalendar xgcal=xgcal=DatatypeFactory.newInstance().newXMLGregorianCalendar( 1990, 9, 9, 10, 10, 55, 999, 0);</div></pre></td></tr></table></figure>
+<h4 id="ava日期类Date转XMLGregorianCalendar"><a href="#ava日期类Date转XMLGregorianCalendar" class="headerlink" title="ava日期类Date转XMLGregorianCalendar"></a>ava日期类Date转XMLGregorianCalendar</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//先生成GregorianCalendar类</div><div class="line">GregorianCalendar  a=new GregorianCalendar();</div><div class="line">//格式化工厂</div><div class="line">SimpleDateFormat s=new SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">//定义日期</div><div class="line">Date dd=s.parse(<span class="string">"2017-1-1 11:11:22"</span>);</div><div class="line">//添加到GregorianCalendar</div><div class="line">a.setTime(dd);</div><div class="line">//转换成XMLGregorianCalendar日期类</div><div class="line">XMLGregorianCalendar xgcal=DatatypeFactory.newInstance().newXMLGregorianCalendar(a);</div></pre></td></tr></table></figure>
+<h4 id="ava日期类XMLGregorianCalendar转Date"><a href="#ava日期类XMLGregorianCalendar转Date" class="headerlink" title="ava日期类XMLGregorianCalendar转Date"></a>ava日期类XMLGregorianCalendar转Date</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//XMLGregorianCalendar日期类对象为xgcal</div><div class="line">Date d=xgcal.toGregorianCalendar().getTime();</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kaijunv587.github.io/2017/03/14/Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date /" data-id="cj096q8og00000kj0novmb6sw" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期相关的类/">日期相关的类</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/02/关于JS运算精度损失的说明及处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">历史资源</strong>
+      <div class="article-nav-title">关于JS运算精度损失的说明及处理</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
