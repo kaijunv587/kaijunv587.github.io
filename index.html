@@ -67,6 +67,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-配置controller接受参数全局类型转换拦截器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/28/配置controller接受参数全局类型转换拦截器/" class="article-date">
+  <time datetime="2017-07-28T08:20:34.000Z" itemprop="datePublished">2017-07-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/springMVC/">springMVC</a>►<a class="article-category-link" href="/categories/javaweb/后台/springMVC/配置controller接受参数全局类型转换拦截器/">配置controller接受参数全局类型转换拦截器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/28/配置controller接受参数全局类型转换拦截器/">配置controller接受参数全局类型转换拦截器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>##### spring-mvc,.xml配置添加如下
+##### 支持jar包     spring-context-4.3.7.RELEASE.jar
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=<span class="string">"conversionService"</span> class=<span class="string">"org.springframework.format.support.FormattingConversionServiceFactoryBean"</span>&gt;</div><div class="line">	&lt;property name=<span class="string">"converters"</span>&gt;</div><div class="line">		&lt;list&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.BigDecimalConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.BooleanConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.DateConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.IntegerConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.LongConverter"</span> /&gt;</div><div class="line">		&lt;/list&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<pre><code>##### 相关类
+##### 支持jar包    spring-core-4.3.7.RELEASE.jar
+##### BigDecimal
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import java.math.BigDecimal;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class BigDecimalConverter implements Converter&lt;String, BigDecimal&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public BigDecimal convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> BigDecimal.valueOf(Double.parseDouble(text));</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>##### Boolean
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class BooleanConverter implements Converter&lt;String, Boolean&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Boolean convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> Boolean.parseBoolean(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>##### Date
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import java.text.ParseException;</div><div class="line">import java.text.SimpleDateFormat;</div><div class="line">import java.util.Date;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class DateConverter implements Converter&lt;String, Date&gt; &#123;</div><div class="line"></div><div class="line">	private static final String DEFAULT_MONTH_FORMAT = <span class="string">"yyyy-MM"</span>;</div><div class="line">	private static final String DEFAULT_DATE_FORMAT = <span class="string">"yyyy-MM-dd"</span>;</div><div class="line">	private static final String DEFAULT_DATETIME_FORMAT = <span class="string">"yyyy-MM-dd hh:mm:ss"</span>;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Date convert(String text) &#123;</div><div class="line">		String format = DEFAULT_DATETIME_FORMAT;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			<span class="keyword">if</span> (text.length()==7) &#123;</div><div class="line">				format = DEFAULT_MONTH_FORMAT;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (text.length() == 10) &#123;</div><div class="line">				format = DEFAULT_DATE_FORMAT;</div><div class="line">			&#125;</div><div class="line">			SimpleDateFormat df = new SimpleDateFormat(format);</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> df.parse(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				SimpleDateFormat df1 = new SimpleDateFormat(DEFAULT_DATE_FORMAT);</div><div class="line">				try &#123;</div><div class="line">					<span class="built_in">return</span> df1.parse(text);</div><div class="line">				&#125; catch (ParseException e1) &#123;</div><div class="line">					e1.printStackTrace();</div><div class="line">				&#125;</div><div class="line">				</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>##### Integer
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class IntegerConverter implements Converter&lt;String, Integer&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Integer convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> Integer.parseInt(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>##### Long
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class LongConverter implements Converter&lt;String, Long&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Long convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> Long.parseLong(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kaijunv587.github.io/2017/07/28/配置controller接受参数全局类型转换拦截器/" data-id="cj5nnj6q900101gj0tc9jfo1s" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springMVC/">springMVC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-读取spring容器中的bean" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/28/读取spring容器中的bean/" class="article-date">
@@ -98,67 +155,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/07/28/读取spring容器中的bean/" data-id="cj5nnd1iv0008p4j03vzig0en" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/07/28/读取spring容器中的bean/" data-id="cj5nnj6q4000y1gj0y3ru9gmu" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-配置controller接受参数全局类型转换拦截器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/28/配置controller接受参数全局类型转换拦截器/" class="article-date">
-  <time datetime="2017-07-28T08:20:34.000Z" itemprop="datePublished">2017-07-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/springMVC/">springMVC</a>►<a class="article-category-link" href="/categories/javaweb/后台/springMVC/配置controller接受参数全局类型转换拦截器/">配置controller接受参数全局类型转换拦截器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/28/配置controller接受参数全局类型转换拦截器/">配置controller接受参数全局类型转换拦截器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code>spring-mvc,.xml配置添加如下
-支持jar包     spring-context-4.3.7.RELEASE.jar
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=<span class="string">"conversionService"</span> class=<span class="string">"org.springframework.format.support.FormattingConversionServiceFactoryBean"</span>&gt;</div><div class="line">	&lt;property name=<span class="string">"converters"</span>&gt;</div><div class="line">		&lt;list&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.BigDecimalConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.BooleanConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.DateConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.IntegerConverter"</span> /&gt;</div><div class="line">			&lt;bean class=<span class="string">"com.app.account.converter.LongConverter"</span> /&gt;</div><div class="line">		&lt;/list&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
-<pre><code>相关类
-支持jar包    spring-core-4.3.7.RELEASE.jar
-BigDecimal
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import java.math.BigDecimal;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class BigDecimalConverter implements Converter&lt;String, BigDecimal&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public BigDecimal convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> BigDecimal.valueOf(Double.parseDouble(text));</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>Boolean
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class BooleanConverter implements Converter&lt;String, Boolean&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Boolean convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> Boolean.parseBoolean(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>Date
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import java.text.ParseException;</div><div class="line">import java.text.SimpleDateFormat;</div><div class="line">import java.util.Date;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class DateConverter implements Converter&lt;String, Date&gt; &#123;</div><div class="line"></div><div class="line">	private static final String DEFAULT_MONTH_FORMAT = <span class="string">"yyyy-MM"</span>;</div><div class="line">	private static final String DEFAULT_DATE_FORMAT = <span class="string">"yyyy-MM-dd"</span>;</div><div class="line">	private static final String DEFAULT_DATETIME_FORMAT = <span class="string">"yyyy-MM-dd hh:mm:ss"</span>;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Date convert(String text) &#123;</div><div class="line">		String format = DEFAULT_DATETIME_FORMAT;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			<span class="keyword">if</span> (text.length()==7) &#123;</div><div class="line">				format = DEFAULT_MONTH_FORMAT;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (text.length() == 10) &#123;</div><div class="line">				format = DEFAULT_DATE_FORMAT;</div><div class="line">			&#125;</div><div class="line">			SimpleDateFormat df = new SimpleDateFormat(format);</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> df.parse(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				SimpleDateFormat df1 = new SimpleDateFormat(DEFAULT_DATE_FORMAT);</div><div class="line">				try &#123;</div><div class="line">					<span class="built_in">return</span> df1.parse(text);</div><div class="line">				&#125; catch (ParseException e1) &#123;</div><div class="line">					e1.printStackTrace();</div><div class="line">				&#125;</div><div class="line">				</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>Integer
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class IntegerConverter implements Converter&lt;String, Integer&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Integer convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> Integer.parseInt(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>Long
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package com.app.account.converter;</div><div class="line"></div><div class="line">import org.springframework.core.convert.converter.Converter;</div><div class="line"></div><div class="line">public class LongConverter implements Converter&lt;String, Long&gt; &#123;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public Long convert(String text) &#123;</div><div class="line">		<span class="keyword">if</span> (null != text &amp;&amp; !text.equals(<span class="string">""</span>)) &#123;</div><div class="line">			try &#123;</div><div class="line">				<span class="built_in">return</span> Long.parseLong(text);</div><div class="line">			&#125; catch (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> null;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/07/28/配置controller接受参数全局类型转换拦截器/" data-id="cj5nnd1i20000p4j0cbwiqorn" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springMVC/">springMVC</a></li></ul>
 
     </footer>
   </div>
@@ -200,7 +200,7 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/07/28/restful接口集成/" data-id="cj5nnd1it0007p4j03rpvhjqh" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/07/28/restful接口集成/" data-id="cj5nnj6pn000p1gj0ztur58h7" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
@@ -245,55 +245,10 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/06/09/Java后台访问restful接口案例说明/" data-id="cj3y011ix0004i4j0kafuolq9" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/06/09/Java后台访问restful接口案例说明/" data-id="cj5nnj6oj00061gj0qfm74ubz" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后台访问restful/">后台访问restful</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java读取properties文件数据" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/09/Java读取properties文件数据/" class="article-date">
-  <time datetime="2017-06-09T01:56:34.000Z" itemprop="datePublished">2017-06-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/文件读取/">文件读取</a>►<a class="article-category-link" href="/categories/javaweb/后台/文件读取/读取properties文件数据/">读取properties文件数据</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/Java读取properties文件数据/">Java读取properties文件数据</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="JAR包支持（我用的是1-8的版本）"><a href="#JAR包支持（我用的是1-8的版本）" class="headerlink" title="JAR包支持（我用的是1.8的版本）"></a>JAR包支持（我用的是1.8的版本）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">commons-configuration-1.8.jar</div></pre></td></tr></table></figure>
-<h4 id="编写单例访问类"><a href="#编写单例访问类" class="headerlink" title="编写单例访问类"></a>编写单例访问类</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">	import org.apache.commons.configuration.Configuration;</div><div class="line">import org.apache.commons.configuration.ConfigurationException;</div><div class="line">import org.apache.commons.configuration.PropertiesConfiguration;</div><div class="line"></div><div class="line">/**</div><div class="line"> * </div><div class="line"> * @author lvhuabing</div><div class="line"> * </div><div class="line"> */</div><div class="line">public class WSConfigManager &#123;</div><div class="line">	//文件名字</div><div class="line">	private static String PROP_CONFIG_FILE_NAME = <span class="string">"ws.properties"</span>;</div><div class="line">	private static WSConfigManager instance;</div><div class="line">	private Configuration config = null;</div><div class="line"></div><div class="line">	</div><div class="line">	private WSConfigManager() throws ConfigurationException&#123;</div><div class="line">		config = new PropertiesConfiguration(PROP_CONFIG_FILE_NAME);</div><div class="line">	&#125;</div><div class="line">	public static WSConfigManager <span class="function"><span class="title">getInstance</span></span>()&#123;</div><div class="line">		  <span class="keyword">if</span> (null == instance) &#123;</div><div class="line">	            try &#123;</div><div class="line">	                instance = new WSConfigManager();</div><div class="line">	            &#125; catch (ConfigurationException ex) &#123;</div><div class="line">	                throw new RuntimeException(ex);</div><div class="line">	            &#125;</div><div class="line">	        &#125;</div><div class="line">	        <span class="built_in">return</span> instance;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public Configuration <span class="function"><span class="title">getConfig</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> config;</div><div class="line">	&#125;</div><div class="line">	public String getString(String key) &#123;</div><div class="line">		String value = config.getString(key);</div><div class="line">		<span class="keyword">if</span> (value != null &amp;&amp; !<span class="string">""</span>.equals(value)) &#123;</div><div class="line">			value = value.trim();</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> value;</div><div class="line">	&#125;</div><div class="line">	/**</div><div class="line">	 * @param args</div><div class="line">	 *测试</div><div class="line">	 */</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		System.out.println(WSConfigManager.getInstance().getString(<span class="string">"EAS_WS_URL"</span>));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="提取对应的数据"><a href="#提取对应的数据" class="headerlink" title="提取对应的数据"></a>提取对应的数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WSConfigManager.getInstance().getString(<span class="string">"EAS_WS_URL"</span>);</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/06/09/Java读取properties文件数据/" data-id="cj3y011iz0005i4j0bo0qdjd2" class="article-share-link">分享到</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读取properties文件数据/">读取properties文件数据</a></li></ul>
 
     </footer>
   </div>
@@ -335,10 +290,55 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/06/09/Ajax访问restful接口/" data-id="cj3y011iq0001i4j0rjqnb2zu" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/06/09/Ajax访问restful接口/" data-id="cj5nnj6o000011gj0s8nzd2cd" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域请求数据/">跨域请求数据</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java读取properties文件数据" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/Java读取properties文件数据/" class="article-date">
+  <time datetime="2017-06-09T01:56:34.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javaweb/">javaweb</a>►<a class="article-category-link" href="/categories/javaweb/后台/">后台</a>►<a class="article-category-link" href="/categories/javaweb/后台/文件读取/">文件读取</a>►<a class="article-category-link" href="/categories/javaweb/后台/文件读取/读取properties文件数据/">读取properties文件数据</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/Java读取properties文件数据/">Java读取properties文件数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="JAR包支持（我用的是1-8的版本）"><a href="#JAR包支持（我用的是1-8的版本）" class="headerlink" title="JAR包支持（我用的是1.8的版本）"></a>JAR包支持（我用的是1.8的版本）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">commons-configuration-1.8.jar</div></pre></td></tr></table></figure>
+<h4 id="编写单例访问类"><a href="#编写单例访问类" class="headerlink" title="编写单例访问类"></a>编写单例访问类</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">	import org.apache.commons.configuration.Configuration;</div><div class="line">import org.apache.commons.configuration.ConfigurationException;</div><div class="line">import org.apache.commons.configuration.PropertiesConfiguration;</div><div class="line"></div><div class="line">/**</div><div class="line"> * </div><div class="line"> * @author lvhuabing</div><div class="line"> * </div><div class="line"> */</div><div class="line">public class WSConfigManager &#123;</div><div class="line">	//文件名字</div><div class="line">	private static String PROP_CONFIG_FILE_NAME = <span class="string">"ws.properties"</span>;</div><div class="line">	private static WSConfigManager instance;</div><div class="line">	private Configuration config = null;</div><div class="line"></div><div class="line">	</div><div class="line">	private WSConfigManager() throws ConfigurationException&#123;</div><div class="line">		config = new PropertiesConfiguration(PROP_CONFIG_FILE_NAME);</div><div class="line">	&#125;</div><div class="line">	public static WSConfigManager <span class="function"><span class="title">getInstance</span></span>()&#123;</div><div class="line">		  <span class="keyword">if</span> (null == instance) &#123;</div><div class="line">	            try &#123;</div><div class="line">	                instance = new WSConfigManager();</div><div class="line">	            &#125; catch (ConfigurationException ex) &#123;</div><div class="line">	                throw new RuntimeException(ex);</div><div class="line">	            &#125;</div><div class="line">	        &#125;</div><div class="line">	        <span class="built_in">return</span> instance;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public Configuration <span class="function"><span class="title">getConfig</span></span>()&#123;</div><div class="line">		<span class="built_in">return</span> config;</div><div class="line">	&#125;</div><div class="line">	public String getString(String key) &#123;</div><div class="line">		String value = config.getString(key);</div><div class="line">		<span class="keyword">if</span> (value != null &amp;&amp; !<span class="string">""</span>.equals(value)) &#123;</div><div class="line">			value = value.trim();</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> value;</div><div class="line">	&#125;</div><div class="line">	/**</div><div class="line">	 * @param args</div><div class="line">	 *测试</div><div class="line">	 */</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		System.out.println(WSConfigManager.getInstance().getString(<span class="string">"EAS_WS_URL"</span>));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="提取对应的数据"><a href="#提取对应的数据" class="headerlink" title="提取对应的数据"></a>提取对应的数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WSConfigManager.getInstance().getString(<span class="string">"EAS_WS_URL"</span>);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://kaijunv587.github.io/2017/06/09/Java读取properties文件数据/" data-id="cj5nnj6ou000b1gj0dyyrbvm4" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读取properties文件数据/">读取properties文件数据</a></li></ul>
 
     </footer>
   </div>
@@ -377,7 +377,7 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/04/07/pom文件结构说明/" data-id="cj3y011lu002hi4j0e04abpnh" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/04/07/pom文件结构说明/" data-id="cj5nnj6pk000m1gj0ktzkms7v" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pom/">pom</a></li></ul>
@@ -423,7 +423,7 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/04/07/Webservice客户端生成以及使用CXF发布/" data-id="cj3y011j8000ai4j0gk5ho40e" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/04/07/Webservice客户端生成以及使用CXF发布/" data-id="cj5nnj6p4000f1gj02es0lye1" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webservice/">Webservice</a></li></ul>
@@ -468,7 +468,7 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/03/14/Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date /" data-id="cj3y011jh000ei4j09mb5uf26" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/03/14/Java日期相关的类 XMLGregorianCalendar 和 GregorianCalendary以及Date /" data-id="cj5nnj6ol00071gj0ybahngpa" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期相关的类/">日期相关的类</a></li></ul>
@@ -511,7 +511,7 @@ BigDecimal
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://kaijunv587.github.io/2017/03/02/关于JS运算精度损失的说明及处理/" data-id="cj3y011jb000bi4j0si0t0xn4" class="article-share-link">分享到</a>
+      <a data-url="http://kaijunv587.github.io/2017/03/02/关于JS运算精度损失的说明及处理/" data-id="cj5nnj6pw000t1gj0gr1beca8" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript自定义加减乘除/">JavaScript自定义加减乘除</a></li></ul>
@@ -578,11 +578,11 @@ BigDecimal
       <ul>
         
           <li>
-            <a href="/2017/07/28/读取spring容器中的bean/">读取spring容器中的bean</a>
+            <a href="/2017/07/28/配置controller接受参数全局类型转换拦截器/">配置controller接受参数全局类型转换拦截器</a>
           </li>
         
           <li>
-            <a href="/2017/07/28/配置controller接受参数全局类型转换拦截器/">配置controller接受参数全局类型转换拦截器</a>
+            <a href="/2017/07/28/读取spring容器中的bean/">读取spring容器中的bean</a>
           </li>
         
           <li>
@@ -594,7 +594,7 @@ BigDecimal
           </li>
         
           <li>
-            <a href="/2017/06/09/Java读取properties文件数据/">Java读取properties文件数据</a>
+            <a href="/2017/06/09/Ajax访问restful接口/">Ajax访问restful接口</a>
           </li>
         
       </ul>
